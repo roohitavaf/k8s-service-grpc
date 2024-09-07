@@ -2,6 +2,17 @@ This is a toy project to experiment with k8s services and gRPC.
 
 # Setup
 
+## Docker
+On macOS: Download Docker Desktop from the Docker website.
+
+On Ubuntu:
+```
+sudo apt update
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
 ## Kind
 ```
 # On macOS
@@ -16,17 +27,6 @@ sudo mv ./kind /usr/local/bin/kind
 create cluster
 ```
 kind create cluster --name my-cluster
-```
-
-## Docker
-On macOS: Download Docker Desktop from the Docker website.
-
-On Ubuntu:
-```
-sudo apt update
-sudo apt install docker.io
-sudo systemctl start docker
-sudo systemctl enable docker
 ```
 
 ## Ko
