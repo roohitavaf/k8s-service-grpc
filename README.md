@@ -1,4 +1,4 @@
-This is toy project to experiment with k8s services and gRPC.
+This is a toy project to experiment with k8s services and gRPC.
 
 # Setup
 
