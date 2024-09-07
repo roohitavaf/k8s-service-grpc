@@ -14,16 +14,21 @@ build: proto
 
 clean:
 	rm -f pkg/echo/*.pb.go
-	rm -f bin/myapp
+	rm -f bin/echo-client
+	rm -f bin/echo-server
 
-publish:
-	ko publish -t latest ./cmd/echo-server
-	ko publish -t latest ./cmd/echo-client
-
-server:
+deploy-headless:
+	kubectl apply -f config/headless-service.yaml
 	ko apply -f config/echo-server.yaml
+	ko apply -f config/echo-client-headless.yaml
 
-client:
-	ko apply -f config/echo-client.yaml
 
-.PHONY: proto build clean
+deploy-cluster-ip:
+	kubectl apply -f config/cluster-ip-service.yaml
+	ko apply -f config/echo-server.yaml
+	ko apply -f config/echo-client-cluster-ip.yaml
+
+undeploy-all:
+	kubectl delete -f config/
+
+.PHONY: proto build clean deploy-headless deploy-cluster-ip undeploy-all

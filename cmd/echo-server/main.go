@@ -33,8 +33,15 @@ func (s *echoServer) Echo(ctx context.Context, req *pb.EchoRequest) (*pb.EchoRes
 	s.mu.RUnlock()
 	log.Printf("Received(%v): %v", s.ip, req.GetMessage())
 
-	// Randomly decide if the server should become unready
-	if rand.Float32() < 0.2 {
+	//comment this line if you don't want your server to fail
+	s.fail(0.2)
+
+	return &pb.EchoResponse{Message: "Server_IP(" + s.ip + "): " + req.GetMessage()}, nil
+}
+
+// Randomly decide if the server should become unready
+func (s *echoServer) fail(p float32) {
+	if rand.Float32() < p {
 		s.mu.Lock()
 		s.ready = false
 		s.mu.Unlock()
@@ -42,10 +49,7 @@ func (s *echoServer) Echo(ctx context.Context, req *pb.EchoRequest) (*pb.EchoRes
 		// Start a timer to become ready again after 5 seconds
 		s.startUnreadyTimer()
 	}
-
-	return &pb.EchoResponse{Message: "Server_IP(" + s.ip + "): " + req.GetMessage()}, nil
 }
-
 func (s *echoServer) readinessHandler(w http.ResponseWriter, r *http.Request) {
 	s.mu.RLock()
 	if s.ready {
