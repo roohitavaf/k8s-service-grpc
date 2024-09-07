@@ -59,14 +59,15 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 
 # Experiment
 ## Deploy Headless Service Example
-This will deploy servers, the client, and the service with the headless model.
+This will deploy servers, the client, and the service with the headless model. In this example, gRPC load balance per request utilizing all servers.
 
 ```
 make deploy-headless
 ```
 
 ## Deploy ClusterIP Service Example
-This will deploy servers, the client, and the service with the clusterIp model.
+This will deploy servers, the client, and the service with the clusterIp model. In this example, kube-proxy load balance at the connection time, and the gRPC client stick to only one server, thereby utilizing only one server.
+
 ```
 make deploy-cluster-ip
 ```
