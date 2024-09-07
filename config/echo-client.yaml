@@ -5,5 +5,5 @@ metadata:
 spec:
   containers:
   - name: echo-client
-    image: ko://github.com/roohitavaf/k8s-service-grpc/echo-client
-    command: ["ko-app.echo-client", "Hello from client"]
+    image: ko://github.com/roohitavaf/k8s-service-grpc/cmd/echo-client
+    command: ["ko-app/echo-client", "headless", "Hello from client"]

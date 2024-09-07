@@ -1,6 +1,7 @@
 KO_DOCKER_REPO ?= kind.local
 
 export KO_DOCKER_REPO
+export KO_DEFAULTBASEIMAGE=alpine:latest
 
 proto:
 	protoc --proto_path=api/v1 --go_out=pkg/echo --go_opt=paths=source_relative \

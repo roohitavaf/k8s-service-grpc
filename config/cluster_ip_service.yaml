@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: echo-server-service
+  name: clusterIP-echo-server-service
 spec:
   selector:
     app: echo-server
@@ -9,4 +9,4 @@ spec:
   - protocol: TCP
     port: 50051
     targetPort: 50051
-  type: ClusterIp
+  type: ClusterIP
