@@ -59,12 +59,14 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 
 # Experiment
 ## Deploy Headless Service Example
+This will deploy servers, the client, and the service with the headless model.
 
 ```
 make deploy-headless
 ```
 
 ## Deploy ClusterIP Service Example
+This will deploy server, the client, and the service with the clusterIp model.
 ```
 make deploy-cluster-ip
 ```
