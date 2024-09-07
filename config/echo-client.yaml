@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: echo-client
+spec:
+  containers:
+  - name: echo-client
+    image: ko://github.com/roohitavaf/k8s-service-grpc/echo-client
+    command: ["ko-app.echo-client", "Hello from client"]

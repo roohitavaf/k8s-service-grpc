@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: echo-server
+  template:
+    metadata:
+      labels:
+        app: echo-server
+    spec:
+      containers:
+      - name: echo-server
+        image: ko://github.com/roohitavaf/k8s-service-grpc/cmd/echo-server
+        ports:
+        - containerPort: 50051
+        readinessProbe:
+          httpGet:
+            path: /readiness
+            port: 8080
+          initialDelaySeconds: 10 # Wait 10 seconds before performing the first probe
+          periodSeconds: 1 # check every second
+          timeoutSeconds: 1 # wait for 1 second before considering the probe failed
+          failureThreshold: 1 # consider the probe failed after 1 failed attemp
