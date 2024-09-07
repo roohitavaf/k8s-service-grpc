@@ -2,7 +2,7 @@ This is a toy project to experiment with k8s services and gRPC.
 
 # Setup
 
-## kind
+## Kind
 ```
 # On macOS
 brew install kind
